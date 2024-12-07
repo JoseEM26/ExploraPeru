@@ -40,6 +40,7 @@ public class MantenimientoUsuario {
 				u.setFechaCreacion(rs.getString("fecha_creacion"));
 				u.setFechaCumpleaños(rs.getString("fecha_cumpleaños"));
 				u.setImg(rs.getString("img"));
+				u.setTelefono(rs.getString("telefono"));
 				
 			}
 		} catch (Exception e) {
@@ -48,6 +49,37 @@ public class MantenimientoUsuario {
 			MySQLConnection.CloseConection(con);
 		}
 		return u;
+	}
+	public int registrar(Usuario objUsuario) throws Exception {
+		int ok = 0; // variable de control > 0 (Éxito) / == 0 (Error)
+		Connection con = null; // obtener la conexión con la BD
+		PreparedStatement pst = null; // prepara las sentencias a ejecutar
+		try {
+			con =MySQLConnection.getConnection();
+
+			// Sentencia SQL con las columnas explícitamente especificadas
+			String sql = "insert into Usuarios (nombre_usuario, email, contraseña, telefono, id_rol, fecha_cumpleaños, img) values (?, ?, ?, ?, ?, ?, ?)";
+
+			// prepara la sentencia
+			pst = con.prepareStatement(sql);
+
+			// asigna los valores a los placeholders
+			pst.setString(1, objUsuario.getNombreUsuario());
+			pst.setString(2, objUsuario.getEmail());
+			pst.setString(3, objUsuario.getContraseña());
+			pst.setString(4, objUsuario.getTelefono());
+			pst.setInt(5, objUsuario.getIdRol());
+			pst.setString(6, objUsuario.getFechaCumpleaños());
+			pst.setString(7, objUsuario.getImg());
+
+			// ejecuta la sentencia y devuelve el resultado
+			ok = pst.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("Error en registrar: " + e.getMessage());
+		} finally {
+			MySQLConnection.CloseConection(con);
+		}
+		return ok;
 	}
 
 }

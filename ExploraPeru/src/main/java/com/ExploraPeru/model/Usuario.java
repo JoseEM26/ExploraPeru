@@ -9,25 +9,43 @@ public class Usuario {
     private String fechaCreacion;
     private String fechaCumpleaños;
     private String img;
+    private String telefono;
 
     // Constructor vacío
     public Usuario() {
     }
 
-    // Constructor con todos los campos
-    public Usuario(int idUsuario, String nombreUsuario, String email, String contraseña, 
-                   int idRol, String fechaCreacion,  String fechaCumpleaños,String img) {
-        this.idUsuario = idUsuario;
-        this.nombreUsuario = nombreUsuario;
-        this.email = email;
-        this.contraseña = contraseña;
-        this.idRol = idRol;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaCumpleaños = fechaCumpleaños;
-        this.img=img;
-    }
+   
 
-    // Getters y Setters
+    public Usuario(int idUsuario, String nombreUsuario, String email, String contraseña, int idRol,
+			String fechaCreacion, String fechaCumpleaños, String img, String telefono) {
+		super();
+		this.idUsuario = idUsuario;
+		this.nombreUsuario = nombreUsuario;
+		this.email = email;
+		this.contraseña = contraseña;
+		this.idRol = idRol;
+		this.fechaCreacion = fechaCreacion;
+		this.fechaCumpleaños = fechaCumpleaños;
+		this.img = img;
+		this.telefono = telefono;
+	}
+
+
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+
+
+	// Getters y Setters
     public int getIdUsuario() {
         return idUsuario;
     }

@@ -98,6 +98,14 @@
 							</div>
 							<div class="row">
 								<div class="col-md-6">
+									<label>Telefono</label>
+								</div>
+								<div class="col-md-6">
+									<p>${u.telefono }</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
 									<label>Rol</label>
 								</div>
 								<div class="col-md-6">

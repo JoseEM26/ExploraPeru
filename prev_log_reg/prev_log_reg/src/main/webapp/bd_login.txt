@@ -1,0 +1,51 @@
+-- Borra la base de datos si existe
+DROP DATABASE IF EXISTS exploraperu;
+-- Crea la base de datos
+CREATE DATABASE exploraperu;
+-- Activa la base de datos
+USE exploraperu;
+
+-- tabla roles
+CREATE TABLE tb_roles (
+    id_rol int not null primary key,
+    nombre_rol varchar(50) not null
+);
+
+-- tabla usuarios
+DROP TABLE IF EXISTS tb_usuarios;
+CREATE TABLE tb_usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    correo VARCHAR(100) NOT NULL UNIQUE,
+    clave VARCHAR(255) NOT NULL,
+    telefono VARCHAR(15),
+    id_rol INT NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    fecha_cumple DATE,
+    img TEXT,
+    FOREIGN KEY (id_rol) REFERENCES tb_roles(id_rol)
+);
+
+
+-- inserts
+insert into tb_roles values (1, 'administrador');
+insert into tb_roles values (2, 'cliente');
+
+insert into tb_usuarios (nombre, correo, clave, telefono, id_rol, fecha_cumple, img)
+values ('Carlos Ramirez', 'CR0001@gmail.com', '10001', '987654321', 1, '1990-05-15', null);
+
+insert into tb_usuarios (nombre, correo, clave, telefono, id_rol, fecha_cumple, img)
+values ('Lucía Fernandez', 'LF0002@gmail.com', '10002', '912345678', 2, '1992-07-30', null);
+
+insert into tb_usuarios (nombre, correo, clave, telefono, id_rol, fecha_cumple, img)
+values ('Miguel Torres', 'MT0003@gmail.com', '10003', '923456789', 2, '1985-09-10', null);
+
+insert into tb_usuarios (nombre, correo, clave, telefono, id_rol, fecha_cumple, img)
+values ('Ana Martinez', 'AM0004@gmail.com', '10004', '934567890', 1, '1988-11-22', null);
+
+insert into tb_usuarios (nombre, correo, clave, telefono, id_rol, fecha_cumple, img)
+values ('Jorge Lopez', 'JL0005@gmail.com', '10005', '945678901', 2, '1995-02-05', null);
+
+
+-- consultas
+SELECT * FROM tb_usuarios;

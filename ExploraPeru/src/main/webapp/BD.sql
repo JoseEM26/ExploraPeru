@@ -1,3 +1,4 @@
+
 -- Crear la base de datos y utilizarla
 CREATE DATABASE IF NOT EXISTS ExploraPeru;
 USE ExploraPeru;
@@ -18,21 +19,22 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     nombre_usuario VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     contraseña VARCHAR(255) NOT NULL,
+    telefono VARCHAR(15),
     id_rol INT NOT NULL,
-    fecha_creacion DATE NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     fecha_cumpleaños DATE,
     img TEXT,
     FOREIGN KEY (id_rol) REFERENCES Roles(id_rol)
 );
 
 -- Insertar datos en la tabla Usuarios
-INSERT INTO Usuarios (nombre_usuario, email, contraseña, id_rol, fecha_creacion, fecha_cumpleaños, img)
+INSERT INTO Usuarios (nombre_usuario, email, contraseña, telefono, id_rol, fecha_cumpleaños, img)
 VALUES 
-('Juan Pérez', 'juan.perez@gmail.com', 'contrasena123', 1, '2024-12-01', '1990-06-15', 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600'),
-('Ana López', 'ana.lopez@hotmail.com', 'contrasena456', 1, '2024-12-01', '1988-04-20', 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600'),
-('Carlos Díaz', 'carlos.diaz@gmail.com', 'contrasena789', 1, '2024-12-01', '1995-12-25', 'https://images.pexels.com/photos/6801642/pexels-photo-6801642.jpeg?auto=compress&cs=tinysrgb&w=600'),
-('María García', 'maria.garcia@gmail.com', 'admin12345', 2, '2024-12-01', '1985-03-10', 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600'),
-('Pedro Fernández', 'pedro.fernandez@hotmail.com', 'admin54321', 2, '2024-12-01', '1992-07-18', 'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=600');
+('Juan Pérez', 'juan.perez@gmail.com', 'contrasena123', '987654321', 1, '1990-06-15', 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600'),
+('Ana López', 'ana.lopez@hotmail.com', 'contrasena456', '989123456', 1, '1988-04-20', 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600'),
+('Carlos Díaz', 'carlos.diaz@gmail.com', 'contrasena789', '986543210', 1, '1995-12-25', 'https://images.pexels.com/photos/6801642/pexels-photo-6801642.jpeg?auto=compress&cs=tinysrgb&w=600'),
+('María García', 'maria.garcia@gmail.com', 'admin12345', '988765432', 2, '1985-03-10', 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600'),
+('Pedro Fernández', 'pedro.fernandez@hotmail.com', 'admin54321', '987123456', 2, '1992-07-18', 'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=600');
 
 -- Crear tabla CLIENTES
 CREATE TABLE IF NOT EXISTS CLIENTES (
@@ -128,3 +130,4 @@ SELECT * FROM CONTACTANOS;
 SELECT * FROM Roles;
 SELECT * FROM Usuarios;
 SELECT * FROM Usuarios WHERE email = 'juan.perez@gmail.com' AND contraseña = 'contrasena123';
+

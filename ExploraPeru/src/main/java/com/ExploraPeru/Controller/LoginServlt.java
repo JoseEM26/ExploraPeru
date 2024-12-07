@@ -53,17 +53,17 @@ public class LoginServlt extends HttpServlet {
 			System.out.println(u);
 			if (u.getIdRol() == 1) {
 				System.out.println("Ingreso Correctamente al loginUsuario");
-				request.getRequestDispatcher("Index.jsp").forward(request, response);
+				request.getRequestDispatcher("MenuUsuario.jsp").forward(request, response);
 				System.out.println(email + "-" + contrasena);
 			} else {
 				System.out.println("Ingreso Correctamente al loginAdministrador");
-				request.getRequestDispatcher("IndexAdministrador.jsp").forward(request, response);
+				request.getRequestDispatcher("MenuAdm.jsp").forward(request, response);
 				System.out.println(email + "-" + contrasena);
 			}
 
 		} else {
 			System.out.println("Ingreso Incorrectamente al login");
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
+			request.getRequestDispatcher("Index.jsp").forward(request, response);
 			System.out.println(email + contrasena);
 
 		}
