@@ -46,7 +46,7 @@ public class RegistrarUsuario extends HttpServlet {
 			u.setContraseña(request.getParameter("clave"));
 			u.setTelefono(request.getParameter("telefono"));
 			u.setFechaCumpleaños(request.getParameter("cumple"));
-			u.setIdRol(1);
+			u.setIdRol(2);
            u.setImg(request.getParameter("img"));
 			// Llamar a la clase de gestión para registrar al usuario
 			int ok = new MantenimientoUsuario().registrar(u);

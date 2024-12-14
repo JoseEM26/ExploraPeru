@@ -23,29 +23,38 @@
 				<img alt="Error al encontrar img" src="${u.img}"
 					style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
 			</div>
-
+			<div class="form-group">
+				<label>Id Usuario:</label> <input type="text"
+					class="form-control item" id="username" value="${u.idUsuario }"
+					name="id" placeholder="Nombre Usuario">
+			</div>
 			<div class="form-group">
 				<label>Nombre Usuario:</label> <input type="text"
 					class="form-control item" id="username" value="${u.nombreUsuario }"
-					placeholder="Nombre Usuario">
+					name="nombre" placeholder="Nombre Usuario">
 			</div>
 			<div class="form-group">
 				<label>Email:</label> <input type="text" class="form-control item"
-					id="password" value="${u.email }" placeholder="Correo Electronico">
+					name="email" id="password" value="${u.email }"
+					placeholder="Correo Electronico">
 			</div>
 			<div class="form-group">
-				<label>Contraseña:</label> <input type="password"
+				<label>Contraseña:</label> <input type="password" name="contrasena"
 					class="form-control item" id="email" value="${u.contraseña }"
 					placeholder="Antigua Contraseña">
 			</div>
-
 			<div class="form-group">
-				<label>Fecha Nacimiento:</label> <input type="text"
-					class="form-control item" id="birth-date"
-					value="${u.fechaCumpleaños }" placeholder="Fecha Nacimiento">
+				<label>Numero Celular:</label> <input type="number" name="telefono"
+					class="form-control item" id="email" value="${u.telefono }"
+					placeholder="Antigua Contraseña">
 			</div>
 			<div class="form-group">
-				<label>Url Imagen:</label> <input type="text"
+				<label>Fecha Nacimiento:</label> <input type="date" name="fecha"
+					class="form-control item" id="birth-date"
+					value="${u.fechaCumpleaños }" >
+			</div>
+			<div class="form-group">
+				<label>Url Imagen:</label> <input type="text" name="img"
 					class="form-control item" id="birth-date" value="${u.img }"
 					placeholder="Url Imagen">
 			</div>
@@ -67,12 +76,7 @@
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 	<script src="assets/js/script.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#birth-date').mask('00/00/0000');
-			$('#phone-number').mask('0000-0000');
-		})
-	</script>
+	
 
 
 

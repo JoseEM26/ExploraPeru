@@ -64,7 +64,7 @@ public class FormContactanosServlt extends HttpServlet {
 		}
 		
 		
-		request.getRequestDispatcher("Index.jsp").forward(request, response);
+		request.getRequestDispatcher("MenuUsuario.jsp").forward(request, response);
 	}
 
 }

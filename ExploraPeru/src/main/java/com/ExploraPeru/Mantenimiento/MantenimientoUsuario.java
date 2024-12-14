@@ -13,7 +13,7 @@ import com.ExploraPeru.model.Roles;
 import com.ExploraPeru.model.Usuario;
 
 public class MantenimientoUsuario {
-	public Usuario ValidacionLogin(String email,String clave) {
+	public Usuario ValidacionLogin(String email, String clave) {
 		Usuario u = null;
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -41,7 +41,7 @@ public class MantenimientoUsuario {
 				u.setFechaCumpleaños(rs.getString("fecha_cumpleaños"));
 				u.setImg(rs.getString("img"));
 				u.setTelefono(rs.getString("telefono"));
-				
+
 			}
 		} catch (Exception e) {
 			System.out.println("Error en validar : " + e.getMessage());
@@ -50,12 +50,13 @@ public class MantenimientoUsuario {
 		}
 		return u;
 	}
+
 	public int registrar(Usuario objUsuario) throws Exception {
 		int ok = 0; // variable de control > 0 (Éxito) / == 0 (Error)
 		Connection con = null; // obtener la conexión con la BD
 		PreparedStatement pst = null; // prepara las sentencias a ejecutar
 		try {
-			con =MySQLConnection.getConnection();
+			con = MySQLConnection.getConnection();
 
 			// Sentencia SQL con las columnas explícitamente especificadas
 			String sql = "insert into Usuarios (nombre_usuario, email, contraseña, telefono, id_rol, fecha_cumpleaños, img) values (?, ?, ?, ?, ?, ?, ?)";
@@ -80,6 +81,31 @@ public class MantenimientoUsuario {
 			MySQLConnection.CloseConection(con);
 		}
 		return ok;
+	}
+
+	public int actualizar(Usuario u) {
+	    int ok = 0;
+	    Connection con = null;
+	    PreparedStatement ps = null;
+	    String statement = "CALL ActualizarUsuario(?,?,?,?,?,?,?)"; // Ajusta el número de parámetros
+	    try {
+	        con = MySQLConnection.getConnection();
+	        ps = con.prepareStatement(statement);
+	        ps.setInt(1, u.getIdUsuario());
+	        ps.setString(2, u.getNombreUsuario());
+	        ps.setString(3, u.getEmail());
+	        ps.setString(4, u.getContraseña());
+	        ps.setString(5, u.getTelefono());
+	        ps.setString(6, u.getFechaCumpleaños());
+	        ps.setString(7, u.getImg());
+
+	        ok = ps.executeUpdate();
+	    } catch (Exception e) {
+	        System.out.println("Error al actualizar Usuario: " + e.getMessage());
+	    } finally {
+	        MySQLConnection.CloseConection(con);
+	    }
+	    return ok;
 	}
 
 }

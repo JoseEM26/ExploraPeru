@@ -41,13 +41,16 @@ public class LoginServlt extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		String email = request.getParameter("email");
 		String contrasena = request.getParameter("contrasena");
 		
 
 		Usuario u = new MantenimientoUsuario().ValidacionLogin(email, contrasena);
-
+		
+		/*
 		if (u != null) {
+			System.out.println("Ingreso a la sesión: " + request.getSession().getId());
 			request.getSession().setAttribute("u", u);
 			System.out.println(u.getContraseña() + u.getNombreUsuario() + u.getFechaCumpleaños());
 			System.out.println(u);
@@ -67,6 +70,18 @@ public class LoginServlt extends HttpServlet {
 			System.out.println(email + contrasena);
 
 		}
+		*/
+		
+		if (u != null) {
+			System.out.println("Ingreso a la sesión: " + request.getSession().getId());
+			request.getSession().setAttribute("u", u);
+			request.getRequestDispatcher("MenuUsuario.jsp").forward(request, response);
+			
+		} else {
+			request.setAttribute("mensaje","<script>Swal.fire({title: 'Aviso!',text: 'Usuario o clave incorrecto!',icon: 'error'});</script>");
+			request.getRequestDispatcher("Index.jsp").forward(request, response);
+		}
+
 
 	}
 
